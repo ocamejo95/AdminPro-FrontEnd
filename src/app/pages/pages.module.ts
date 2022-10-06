@@ -8,7 +8,9 @@ import {SharedModule} from "../shared/shared.module";
 import {RouterModule} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {ComponentsModule} from "../components/components.module";
-
+import {AccountSettingsComponent} from './account-settings/account-settings.component';
+import { PromesasComponent } from './promesas/promesas.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 
 @NgModule({
@@ -16,7 +18,10 @@ import {ComponentsModule} from "../components/components.module";
     DashboardComponent,
     ProgressComponent,
     Grafica1Component,
-    PagesComponent
+    PagesComponent,
+    AccountSettingsComponent,
+    PromesasComponent,
+    RxjsComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +35,8 @@ import {ComponentsModule} from "../components/components.module";
     DashboardComponent,
     ProgressComponent,
     Grafica1Component,
-    PagesComponent
+    PagesComponent,
+    AccountSettingsComponent
   ]
 })
 export class PagesModule {
