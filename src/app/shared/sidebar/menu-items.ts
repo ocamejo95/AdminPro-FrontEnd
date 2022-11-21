@@ -3,7 +3,7 @@ import {RouteInfo} from './sidebar.metadata';
 export const ROUTES: RouteInfo[] = [
 
   {
-    title: 'Dashboaard',
+    title: 'Dashboard',
     icon: 'mdi mdi-gauge',
     path: 'mdi mdi-gauge',
     submenu: [
