@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {UsuarioService} from "../../services/usuario.service";
+import {AuthService} from "../../services/auth.service";
 import Swal from 'sweetalert2'
 import {FormBuilder, Validators} from "@angular/forms";
 
@@ -12,24 +12,42 @@ import {FormBuilder, Validators} from "@angular/forms";
 })
 export class LoginComponent implements OnInit {
 
+  remember: boolean = false;
+  email: string;
   public loginForm = this.formBuilder.group({
-    email: ['ocamejo123@gmail.com', [Validators.required, Validators.email]],
-    password: ['123456', Validators.required]
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', Validators.required],
+    recuerdame: [false]
+
   });
 
   constructor(private router: Router,
               private formBuilder: FormBuilder,
-              private usuarioService: UsuarioService) {
+              private authService: AuthService) {
   }
 
   ngOnInit(): void {
+    this.email = localStorage.getItem('email') || '';
+    if (this.email.length > 1) {
+      this.remember = true;
+    }
+
+
+
   }
 
+
   login() {
-    this.usuarioService.login(this.loginForm.value)
-      .subscribe(response => {
-        console.log(response)
-          this.router.navigate(['/dashboard'])
+    if (this.loginForm.value.recuerdame) {
+      localStorage.setItem('email', <string>this.loginForm.value.email)
+    } else {
+      localStorage.removeItem('email')
+    }
+
+    this.authService.login(this.loginForm.value)
+      .subscribe((response: any) => {
+          localStorage.setItem('token', response.token);
+          this.router.navigate(['/dashboard']);
         },
         err => {
           Swal.fire('', err.error.message, 'error')

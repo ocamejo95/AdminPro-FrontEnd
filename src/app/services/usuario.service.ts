@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {map, Observable} from "rxjs";
+import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +10,6 @@ import {environment} from "../../environments/environment";
 export class UsuarioService {
 
   constructor(private http: HttpClient) {
-  }
-
-
-  login(formData: any) {
-    return this.http.post(`${environment.API_URL}/auth`, formData).pipe(map((response: any) => {
-      localStorage.setItem('token', response.token)
-      return true;
-    }));
   }
 
   createUsuario(formData: any): Observable<any> {
