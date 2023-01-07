@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {RouteInfo} from "./sidebar.metadata";
 import {ROUTES} from "./menu-items";
+import {AuthService} from "../../services/auth.service";
+import {Usuario} from "../../models/usuario";
 
 @Component({
   selector: 'app-sidebar',
@@ -8,10 +10,11 @@ import {ROUTES} from "./menu-items";
   styles: []
 })
 export class SidebarComponent implements OnInit {
-
+  public usuario: Usuario;
   public menuItems: RouteInfo[] = [];
 
-  constructor() {
+  constructor(private authService: AuthService) {
+    this.usuario = this.authService.usuario;
   }
 
   ngOnInit(): void {

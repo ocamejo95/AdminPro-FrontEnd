@@ -1,1 +1,21 @@
-<p>rxjs works!</p>
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-4">
+        <h4>companyBOB</h4>
+        <input (change)="companyBOBFile($event)" type="file">
+      </div>
+      <div class="col-md-4">
+        <h4>companyComm</h4>
+        <input (change)="companyCommFile($event)" type="file">
+      </div>
+      <div class="col-md-4">
+        <h4>sherpa</h4>
+        <input (change)="sherpaFile($event)" type="file">
+      </div>
+      <div class="col-md-12 mt-4">
+        <button (click)="submitdata()" class="btn btn-primary" type="button">Upload files</button>
+      </div>
+    </div>
+  </div>
+</div>

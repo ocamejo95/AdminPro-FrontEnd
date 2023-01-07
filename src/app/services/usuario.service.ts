@@ -13,14 +13,16 @@ export class UsuarioService {
   }
 
   createUsuario(formData: any): Observable<any> {
-    return this.http.post(`${environment.API_URL}/usuarios`, formData);
-  }
-
-  updateUsuario(formData: any, uid: string): Observable<any> {
-    return this.http.put(`${environment.API_URL}/usuarios/${uid}`, formData);
+    return this.http.post(`${environment.API_URL}/usuarios`, formData, {
+      headers: {'x-token': this.token}
+    });
   }
 
   deleteUsuario(uid: string): Observable<any> {
     return this.http.delete(`${environment.API_URL}/usuarios/${uid}`);
+  }
+
+  get token() {
+    return localStorage.getItem('token') || '';
   }
 }
